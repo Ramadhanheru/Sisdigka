@@ -1,43 +1,52 @@
+<!-- Begin Page Content -->
+        <div class="container-fluid">
 
-        <div id="page-wrapper">
-            <div id="page-inner"> 
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">MEKANIK</h1>
+          </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="card">
-                        <div class="card-action">
-                             Form Tambah User
-                        </div>
-                        <div class="card-content">
-    <form class="col s12">
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="user" type="text" class="validate">
-          <label for="user">Username</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-          <button class="waves-effect waves-light btn" type="submit">Submit</button>
-      </div>
-    </form>
-    <div class="clearBoth"></div>
-  </div>
+         
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Form Tambah Mekanik</h6>
+            </div>
+            <div class="card-body">
+                        
+              <div>
+                  <form action="<?= base_url('welcome/tambah_user') ?>" method="POST" novalidate">
+                    <div class="form-group">
+                      <label for="nama">Nama:</label>
+                      <input type="text" name="nama" class="form-control" id="nama" required="required">
+                       <?= form_error('nama','<small class="text-danger pl-3 ">','</small>');?>
                     </div>
-                    <!--End Advanced Tables -->
+                    <div class="form-group">
+                      <label for="user">User:</label>
+                      <input type="text" name="user" class="form-control" id="user" required="required">
+                       <?= form_error('user','<small class="text-danger pl-3 ">','</small>');?>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password:</label>
+                      <input type="password" name="password" class="form-control" id="password" required="required">
+                      <?= form_error('password','<small class="text-danger pl-3 ">','</small>');?>
 
-                                    
-                 <footer><p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p></footer>
-                </div>
+                    </div>
+                    
+                    <button id="send" type="submit" class="btn btn-primary">Submit</button>
+                    <a href=" <?=base_url('welcome') ?> " class="btn btn-warning">Cancel</a>
+                </form>
+              </div>
             </div>
-                <!-- /. ROW  -->
-            
-                </div>
-            </div>
+          </div>
+
+
+
+          
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
