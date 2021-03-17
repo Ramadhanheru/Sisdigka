@@ -1,42 +1,66 @@
 
         <div id="page-wrapper">
-		  <div class="header"> 
-                        <h1 class="page-header">
-                            Empty Page <small>Create new page.</small>
-                        </h1>
-						<ol class="breadcrumb">
-					  <li><a href="#">Home</a></li>
-					  <li><a href="#">Empty</a></li>
-					  <li class="active">Data</li>
-					</ol> 
-									
-		</div>
             <div id="page-inner"> 
-			
-			  <div class="row">
-                    
-                    <div class="col-md-12">
+
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="alert alert-success">
+                                    Anda masuk sebagai <strong><?= $this->session->userdata('user') ?>!</strong>.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
                     <div class="card">
                         <div class="card-action">
-                         Empty Page
+                             Table User
                         </div>
-                                
-                         <div class="card-content"> 
-                            <div class="alert alert-success">
-                                    Anda masuk sebagai <strong><?= $this->session->userdata('user') ?>!</strong>.
-                         </div>
-						 <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                           <div class="clearBoth"><br/></div>
-						    
-						 </div>
-						 </div>
-									
-				 <footer><p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p></footer>
-				</div>
-             <!-- /. PAGE INNER  -->
+                        <div class="card-content">
+                            <a class="waves-effect waves-light btn" href="<?= base_url('welcome/tambah_user_'); ?>" style="margin-bottom: 10px;"><i class="material-icons left">add</i>Tambah</a>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>User</th>
+                                            <th>Password</th>
+                                            <th>Role</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                         $no=1;
+                                         foreach($query->result() as $q) { ?>
+                                        <tr class="odd gradeX">
+                                            <td><?= $no; ?></td>
+                                            <td><?= $q->user; ?></td>
+                                            <td><?= $q->password; ?></td>
+                                            <td class="center"><?= $q->role; ?></td>
+                                            <td>edit | hapus</td>
+                                        </tr>
+                                        
+                                      <?php $no++; } ?> 
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+
+                                    
+                 <footer><p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p></footer>
+                </div>
             </div>
-         <!-- /. PAGE WRAPPER  -->
-        </div>
-    </div>
-     <!-- /. WRAPPER  -->
-   
+                <!-- /. ROW  -->
+            
+                </div>
+            </div>

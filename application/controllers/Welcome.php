@@ -20,8 +20,19 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$data['query'] = $this->Model_data->tampil_user();
 		$this->load->view('template/header');
-		$this->load->view('welcome_message');
+		$this->load->view('welcome_message',$data);
+		$this->load->view('template/footer');
+	}
+	public function table(){
+		$this->load->view('template/header');
+		$this->load->view('table');
+		$this->load->view('template/footer');
+	}
+	public function tambah_user_(){
+		$this->load->view('template/header');
+		$this->load->view('tambah_user');
 		$this->load->view('template/footer');
 	}
 	

@@ -4,15 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Model_data extends CI_Model
 {
 
-	public function login($user)
-	{
-		$this->db->select('*');
-		$this->db->from('user');
-		$this->db->where('user', $user);
-		return $this->db->get()->row_array();
-		
-		
-	}
+	
 	public function pdf_laporan_pegawai($id)
 	{
 
@@ -168,51 +160,51 @@ class Model_data extends CI_Model
 
 	}
 	//
+////////////////////////////////////////////////////////////
+
 
 	//
-	public function tampil_pengguna()
+
+	public function login($user)
+	{
+		$this->db->select('*');
+		$this->db->from('user');
+		$this->db->where('user', $user);
+		return $this->db->get()->row_array();
+		
+		
+	}
+	
+	public function tampil_user()
 	{
 
-		$query = $this->db->get('pengguna');
+		$query = $this->db->get('user');
 
 		return $query;
 	}
-	public function tampil_pengguna_join()
+	
+	public function tambah_user($data)
 	{
-		$this->db->select('pengguna.*, pegawai.id_pegawai as id_pegawai, pegawai.nip as nip, pegawai.nama as nama,');
-		$this->db->from('pengguna');
-		$this->db->join('pegawai','pegawai.id_pegawai = pengguna.id_pegawai');
-		$this->db->where_not_in('nama', 'adminn');
-		$this->db->order_by('nama', 'DESC');
-		 $query = $this->db->get();
-		 return $query;
-	}
-	public function tambah_pengguna($data)
-	{
-		$this->db->insert('pengguna', $data);
+		$this->db->insert('user', $data);
 
 	}
-	public function edit_pengguna($id)
+	public function edit_user($id)
 	{
 		$data = [
-			"status" => $this->input->post('status', true)
+			"user" => $this->input->post('user', true),
+			"role" => $this->input->post('role', true)
 		];
 		
 		$this->db->where('id', $id);
-		$this->db->update('pengguna', $data);
+		$this->db->update('user', $data);
 	}
-		public function ambil_id_pengguna($id){
-		$this->db->select('pengguna.*, pegawai.id_pegawai as id_pegawai, pegawai.nip as nip, pegawai.nama as nama,');
-		$this->db->from('pengguna');
-		$this->db->join('pegawai','pegawai.id_pegawai = pengguna.id_pegawai');
-		$this->db->where('id', $id);
-		 $query = $this->db->get()->row_array();
-		 return $query;
+		public function ambil_id_user($id){
+		return $this->db->get_where('pegawai',['id_pegawai'=> $id])->row_array();
 	}
-	public function hapus_pengguna($id)
+	public function hapus_user($id)
 	{
 		$this->db->where('id', $id);
-		$query = $this->db->delete('pengguna');
+		$query = $this->db->delete('user');
 
 	}
 

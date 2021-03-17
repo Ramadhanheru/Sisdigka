@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Target Material Design Bootstrap Admin Template</title>
-	
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="<?= base_url('/') ?>assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <title>Track Material Design Bootstrap Admin Template</title>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('/') ?>assets/materialize/css/materialize.min.css" media="screen,projection" />
     <!-- Bootstrap Styles-->
     <link href="<?= base_url('/') ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -231,6 +231,17 @@
                     </li>
                     <?php } ?> 
                      <?php if($this->session->userdata('role') == '2'){ ?> 
+                    <li>
+                        <a href="#" class="waves-effect waves-dark"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> UI Elements</a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="<?= base_url('login/logout') ?>"><i class="fa fa-fw fa-file"></i> Log out</a>
+                    </li>
+                    <?php } ?> 
+                    <?php if($this->session->userdata('role') == '3'){ ?> 
                     <li>
                         <a href="#" class="waves-effect waves-dark"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>

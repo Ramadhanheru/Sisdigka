@@ -62,6 +62,19 @@ class Login extends CI_Controller {
                    $this->index();
                 }
 					
+				}else if($user['role'] == '3'){
+					if (password_verify($password, $user['password'])) {
+                   
+                   $this->session->set_userdata(array('user'=>$userr,'password'=>$password,'role' => $user['role']));
+					$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert">Welcome '.$userr.' ! </div>');
+					redirect('Welcome/');
+
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Salah Password!</div>');
+                   $this->index();
+                }
+					
 				}else {
 					$this->session->set_flashdata('message','<div class ="alert alert-danger" roles="alert"> Anda belum terdaftar ! </div>');
 					$this->index();
