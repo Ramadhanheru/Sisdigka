@@ -191,15 +191,25 @@ class Model_data extends CI_Model
 	public function edit_user($id)
 	{
 		$data = [
-			"user" => $this->input->post('user', true),
-			"role" => $this->input->post('role', true)
+			
+			"role" => 0
+		];
+		
+		$this->db->where('id', $id);
+		$this->db->update('user', $data);
+	}
+	public function edit_userr($id)
+	{
+		$data = [
+			
+			"role" => 2
 		];
 		
 		$this->db->where('id', $id);
 		$this->db->update('user', $data);
 	}
 		public function ambil_id_user($id){
-		return $this->db->get_where('pegawai',['id_pegawai'=> $id])->row_array();
+		return $this->db->get_where('user',['user'=> $id])->row_array();
 	}
 	public function hapus_user($id)
 	{

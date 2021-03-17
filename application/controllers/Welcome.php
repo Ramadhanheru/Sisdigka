@@ -69,5 +69,47 @@ class Welcome extends CI_Controller {
 		}
 
 	}
-	
+	public function hapus_user(){
+		$id = $this->uri->segment(3);
+		$data = $this->Model_data->hapus_user($id);
+		if (!$data) {
+			$this->session->set_flashdata('message','<div class ="alert alert-success " roles="alert"> Data berhasil dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect(base_url('welcome'));
+		} else {
+			$this->session->set_flashdata('message','<div class ="alert alert-danger  " roles="alert"> Data gagal dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			$this->index();
+			
+		}
+	}
+
+		public function edit_user(){
+		$id = $this->uri->segment(3);
+		$data = $this->Model_data->edit_user($id);
+		if (!$data) {
+			$this->session->set_flashdata('message','<div class ="alert alert-success " roles="alert"> Data berhasil diubah ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect(base_url('welcome'));
+		} else {
+			$this->session->set_flashdata('message','<div class ="alert alert-danger  " roles="alert"> Data gagal dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			$this->index();
+			
+		}
+	}
+	public function edit_userr(){
+		$id = $this->uri->segment(3);
+		$data = $this->Model_data->edit_userr($id);
+		if (!$data) {
+			$this->session->set_flashdata('message','<div class ="alert alert-success " roles="alert"> Data berhasil diubah ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect(base_url('welcome'));
+		} else {
+			$this->session->set_flashdata('message','<div class ="alert alert-danger  " roles="alert"> Data gagal dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			$this->index();
+			
+		}
+	}
 }

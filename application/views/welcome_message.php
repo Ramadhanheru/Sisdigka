@@ -51,8 +51,12 @@
                           <td><?= $q->nama; ?></td>
                           <td><?= $q->user ?></td>
                           <td><?= $q->password ?></td>
-                          <td><?= $q->role ?></td>
-                          <td> <a href=" " class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle"></i> </a>  &nbsp; <a href=" " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i> </a> </td>
+                          <td><?php if ( $q->role != 0) { ?>
+                            <a class="btn btn-sm btn-success" href="<?= base_url('welcome/edit_user/').$q->id; ?>">Aktif</a>
+                          <?php }else { ?>
+                            <a class="btn btn-sm btn-danger"  href="<?= base_url('welcome/edit_userr/').$q->id; ?>">Tidak Aktif</a>
+                         <?php } ?></td> 
+                          <td><a href=" <?= base_url('welcome/hapus_user/').$q->id; ?> " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i> </a> </td>
                         
                         </tr>
 
