@@ -208,8 +208,17 @@ class Model_data extends CI_Model
 		$this->db->where('id', $id);
 		$this->db->update('user', $data);
 	}
+	public function e_user($id)
+	{
+		$data = [
+			'nama' => $this->input->post('nama', true)
+					];
+		
+		$this->db->where('id', $id);
+		$this->db->update('user', $data);
+	}
 		public function ambil_id_user($id){
-		return $this->db->get_where('user',['user'=> $id])->row_array();
+		return $this->db->get_where('user',['id'=> $id])->row_array();
 	}
 	public function hapus_user($id)
 	{
