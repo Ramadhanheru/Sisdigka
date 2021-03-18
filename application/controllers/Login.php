@@ -76,7 +76,7 @@ class Login extends CI_Controller {
                 }
 					
 				}else {
-					$this->session->set_flashdata('message','<div class ="alert alert-danger" roles="alert"> Anda belum terdaftar ! </div>');
+					$this->session->set_flashdata('message','<div class ="alert alert-danger" roles="alert"> Akun Anda belum aktif ! </div>');
 					$this->index();
 				}
 				

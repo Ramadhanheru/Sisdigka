@@ -1,66 +1,80 @@
+<!-- Begin Page Content -->
+        <div class="container-fluid">
 
-        <div id="page-wrapper">
-            <div id="page-inner"> 
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">MEKANIK</h1>
+          </div>
 
-                <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="alert alert-success">
-                                    Anda masuk sebagai <strong><?= $this->session->userdata('user') ?>!</strong>.
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-                         </div>
-                    </div>
-                </div>
+
+         
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">tabel mekanik</h6>
             </div>
+            <div class="card-body">
+            <?= $this->session->flashdata('message');?>
+          <div> <a href=" <?=base_url('welcome/t_user') ?> " class="btn btn-info" style="margin-bottom: 10px;"> Tambah </a>
+              
+            <div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="1">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Mekanik</th>
+                      <th>Username</th>
+                      <th>Password</th>
+                      <th>Role</th>
+                      <th>Opsi  </th>
+                   
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>No</th>
+                      <th>Mekanik</th>
+                      <th>Username</th>
+                      <th>Password</th>
+                      <th>Role</th>
+                      <th>Opsi  </th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                     <?php
+                         $no=1;
+                         foreach($query->result() as $q) { ?>
+                        
+                        <tr>
+                          <td><?= $no ?></td>
+                          <td><?= $q->nama; ?></td>
+                          <td><?= $q->user ?></td>
+                          <td><?= $q->password ?></td>
+                          <td><?php if ( $q->role != 0) { ?>
+                            <a class="btn btn-sm btn-success" href="<?= base_url('welcome/edit_user/').$q->id; ?>">Aktif</a>
+                          <?php }else { ?>
+                            <a class="btn btn-sm btn-danger"  href="<?= base_url('welcome/edit_userr/').$q->id; ?>">Tidak Aktif</a>
+                         <?php } ?></td> 
+                          <td><a href=" <?= base_url('welcome/e_user/').$q->id; ?> " class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit"></i> </a> &nbsp; <a href=" <?= base_url('welcome/hapus_user/').$q->id; ?> " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i> </a> </td>
+                        
+                        </tr>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="card">
-                        <div class="card-action">
-                             Table User
-                        </div>
-                        <div class="card-content">
-                            <a class="waves-effect waves-light btn" href="<?= base_url('welcome/tambah_user_'); ?>" style="margin-bottom: 10px;"><i class="material-icons left">add</i>Tambah</a>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>User</th>
-                                            <th>Password</th>
-                                            <th>Role</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                         $no=1;
-                                         foreach($query->result() as $q) { ?>
-                                        <tr class="odd gradeX">
-                                            <td><?= $no; ?></td>
-                                            <td><?= $q->user; ?></td>
-                                            <td><?= $q->password; ?></td>
-                                            <td class="center"><?= $q->role; ?></td>
-                                            <td>edit | hapus</td>
-                                        </tr>
-                                        
-                                      <?php $no++; } ?> 
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <!--End Advanced Tables -->
+                        <?php $no++; } ?> 
+                  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+          </div>
 
-                                    
-                 <footer><p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p></footer>
-                </div>
-            </div>
-                <!-- /. ROW  -->
-            
-                </div>
-            </div>
+
+
+          
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
