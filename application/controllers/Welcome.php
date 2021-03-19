@@ -149,7 +149,7 @@ class Welcome extends CI_Controller {
 		
 		$this->db->set('user', $this->input->post('user'));
 		$this->db->set('password', password_hash($this->input->post('password'), PASSWORD_DEFAULT));
-		$this->db->where('id', $id);
+		$this->db->where('id_user', $id);
 		$this->db->update('user');
 			$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil diubah ! 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
