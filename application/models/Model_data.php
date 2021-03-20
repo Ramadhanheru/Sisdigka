@@ -227,4 +227,10 @@ class Model_data extends CI_Model
 
 	}
 
+
+	public function tampil_kendaraan(){
+		$query = $this->db->get('kendaraan_masuk');
+		return $query;
+	}
+
 }

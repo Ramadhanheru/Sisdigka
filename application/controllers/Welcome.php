@@ -156,4 +156,15 @@ class Welcome extends CI_Controller {
 			redirect('welcome');
 		}
 	}
+
+
+	public function kendaraan_masuk(){
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+		$data['query'] = $this->Model_data->tampil_kendaraan();
+
+		$this->load->view('template/sidebar');
+		$this->load->view('template/topbar' ,$data);
+		$this->load->view('kendaraan',$data);
+		$this->load->view('template/footer');
+	}
 }

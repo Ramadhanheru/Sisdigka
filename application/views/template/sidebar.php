@@ -52,6 +52,14 @@
 
        <hr class="sidebar-divider my-0">
 
+        <li <?= $this->uri->segment(2) == 'kendaraan_masuk' ? 'class="nav-item active"' : '' ?> class="nav-item ">
+        <a class="nav-link" href="<?= base_url('welcome/kendaraan_masuk') ?>">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>kendaraan masuk</span></a>
+      </li>
+
+       <hr class="sidebar-divider my-0">
+
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
