@@ -64,23 +64,24 @@
       <hr class="sidebar-divider my-0">
 
        <?php }else if($this->session->userdata('role') == 2){ ?>
-         <li <?= $this->uri->segment(2) == 'view_penilaian' ? 'class="nav-item active"' : '' ?> class="nav-item ">
-        <a class="nav-link" href="<?= base_url('welcome/view_penilaian') ?>">
+         
+      <hr class="sidebar-divider my-0">
+
+      <li <?= $this->uri->segment(2) == 'dashboard' ? 'class="nav-item active"' : '' ?> class="nav-item ">
+        <a class="nav-link" href="<?= base_url('mekanik') ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Hasil Penilaian</span></a>
+          <span>Dashboard</span></a>
+      </li>
+         <li <?= $this->uri->segment(2) == '' ? 'class="nav-item active"' : '' ?> class="nav-item ">
+        <a class="nav-link" href="<?= base_url('mekanik') ?>">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Diagnosa Kendaraan</span></a>
       </li>
 
       
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
-      <li <?= $this->uri->segment(2) == 'view_hasil' ? 'class="nav-item active"' : '' ?>class="nav-item ">
-        <a class="nav-link" href="<?= base_url('Welcome/view_hasil') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Data penilaian</span></a>
-      </li>
-       <hr class="sidebar-divider my-0">
 
      
 

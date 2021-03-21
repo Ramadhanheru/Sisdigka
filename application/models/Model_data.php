@@ -229,7 +229,10 @@ class Model_data extends CI_Model
 
 
 	public function tampil_kendaraan(){
-		$query = $this->db->get('kendaraan_masuk');
+		$this->db->select('kendaraan_masuk.*,user.nama');
+		$this->db->from('kendaraan_masuk');
+		$this->db->join('user','user.id_user = kendaraan_masuk.id_user');
+		$query = $this->db->get();
 		return $query;
 	}
 	public function tampil_user_2(){
@@ -241,4 +244,51 @@ class Model_data extends CI_Model
 		$this->db->insert('kendaraan_masuk', $data);
 
 	}
+	public function edit_kendaraan($id)
+	{
+		$data = [
+				'id_user' => $this->input->post('mekanik', true),
+                'nama_stnk' => $this->input->post('nama_stnk', true),
+                'nama_pembawa' => $this->input->post('nama_pembawa', true),
+                'tanggal' => $this->input->post('tanggal', true),
+                'alamat' => $this->input->post('alamat', true),
+                'no_hp' => $this->input->post('no_hp', true),
+                'no_polisi' => $this->input->post('no_polisi', true),
+                'no_mesin' => $this->input->post('no_mesin', true),
+                'tipe' => $this->input->post('tipe', true),
+                'km' => $this->input->post('km', true)
+					];
+		
+		$this->db->where('id_kendaraan', $id);
+		$this->db->update('kendaraan_masuk', $data);
+	}
+		public function ambil_id_kendaraan($id){
+		$this->db->select('kendaraan_masuk.*,user.nama');
+		$this->db->from('kendaraan_masuk');
+		$this->db->join('user','user.id_user = kendaraan_masuk.id_user');
+		$this->db->where('id_kendaraan',$id);
+		$query = $this->db->get()->row_array();
+		return $query;
+	}
+
+	public function hapus_kendaraan($id){
+	
+		$this->db->where('id_kendaraan', $id);
+		$query = $this->db->delete('kendaraan_masuk');		
+
+	}
+
+
+	///////////////////////////////////
+
+	public function tampil_kendaraan_role($id){
+
+		$this->db->select('kendaraan_masuk.*,user.nama');
+		$this->db->from('kendaraan_masuk');
+		$this->db->join('user','user.id_user = kendaraan_masuk.id_user');
+		$this->db->where('kendaraan_masuk.id_user',$id);
+		$query = $this->db->get();
+		return $query;
+	}
+
 }

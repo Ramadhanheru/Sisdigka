@@ -220,4 +220,49 @@ class Welcome extends CI_Controller {
 
 		}
 	}
+
+	public function edit_kendaraan($id){
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+		$data['query'] = $this->Model_data->ambil_id_kendaraan($id);
+		$data['q'] = $this->Model_data->tampil_user_2();
+		$this->form_validation->set_rules('mekanik','mekanik','required|trim');
+		$this->form_validation->set_rules('nama_stnk','nama_stnk','required|trim');
+		$this->form_validation->set_rules('nama_pembawa','nama_pembawa','required|trim');
+		$this->form_validation->set_rules('tanggal','tanggal','required|trim');
+		$this->form_validation->set_rules('alamat','alamat','required|trim');
+		$this->form_validation->set_rules('no_hp','no_hp','required|trim');
+		$this->form_validation->set_rules('no_polisi','no_polisi','required|trim');
+		$this->form_validation->set_rules('no_mesin','no_mesin','required|trim');
+		$this->form_validation->set_rules('tipe','tipe','required|trim');
+		$this->form_validation->set_rules('km','km','required|trim');
+
+		 if($this->form_validation->run()==false){
+		$this->load->view('template/sidebar');
+		$this->load->view('template/topbar' ,$data);
+		$this->load->view('e_kendaraan',$data);
+		$this->load->view('template/footer');
+
+		}else{
+		
+		$proses = $this->Model_data->edit_kendaraan($id);
+			$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil diubah ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect('welcome/kendaraan_masuk');
+		}
+	}
+
+	public function hapus_kendaraan($id){
+		$id = $this->uri->segment(3);
+		$data = $this->Model_data->hapus_kendaraan($id);
+		if (!$data) {
+			$this->session->set_flashdata('message','<div class ="alert alert-success " roles="alert"> Data berhasil dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect(base_url('welcome/kendaraan_masuk'));
+		} else {
+			$this->session->set_flashdata('message','<div class ="alert alert-danger  " roles="alert"> Data gagal dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			$this->index();
+			
+		}
+	}
 }
