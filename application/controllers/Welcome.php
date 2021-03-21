@@ -167,4 +167,57 @@ class Welcome extends CI_Controller {
 		$this->load->view('kendaraan',$data);
 		$this->load->view('template/footer');
 	}
+
+	public function tambah_kendaraan(){
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+		$data['query'] = $this->Model_data->tampil_user_2();
+
+		$this->load->view('template/sidebar');
+		$this->load->view('template/topbar' ,$data);
+		$this->load->view('tambah_kendaraan',$data);
+		$this->load->view('template/footer');
+
+	}
+	public function t_kendaraan(){
+
+		$this->form_validation->set_rules('mekanik','mekanik','required|trim');
+		$this->form_validation->set_rules('nama_stnk','nama_stnk','required|trim');
+		$this->form_validation->set_rules('nama_pembawa','nama_pembawa','required|trim');
+		$this->form_validation->set_rules('tanggal','tanggal','required|trim');
+		$this->form_validation->set_rules('alamat','alamat','required|trim');
+		$this->form_validation->set_rules('no_hp','no_hp','required|trim');
+		$this->form_validation->set_rules('no_polisi','no_polisi','required|trim');
+		$this->form_validation->set_rules('no_mesin','no_mesin','required|trim');
+		$this->form_validation->set_rules('tipe','tipe','required|trim');
+		$this->form_validation->set_rules('km','km','required|trim');
+
+		if( $this->form_validation->run()==false){
+			$this->tambah_kendaraan();
+
+		}else{
+
+			
+			 $data = [
+			 	'id_user' => $this->input->post('mekanik', true),
+                'nama_stnk' => $this->input->post('nama_stnk', true),
+                'nama_pembawa' => $this->input->post('nama_pembawa', true),
+                'tanggal' => $this->input->post('tanggal', true),
+                'alamat' => $this->input->post('alamat', true),
+                'no_hp' => $this->input->post('no_hp', true),
+                'no_polisi' => $this->input->post('no_polisi', true),
+                'no_mesin' => $this->input->post('no_mesin', true),
+                'tipe' => $this->input->post('tipe', true),
+                'km' => $this->input->post('km', true),
+                'status' => 0
+            ];
+
+				$proses = $this->Model_data->tambah_kendaraan($data);
+				$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil ditambah ! 
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+				redirect('welcome/kendaraan_masuk');
+				
+			
+
+		}
+	}
 }

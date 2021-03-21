@@ -232,5 +232,13 @@ class Model_data extends CI_Model
 		$query = $this->db->get('kendaraan_masuk');
 		return $query;
 	}
+	public function tampil_user_2(){
+		return $this->db->get_where('user',['role'=> 2]);
+	}
 
+	public function tambah_kendaraan($data)
+	{
+		$this->db->insert('kendaraan_masuk', $data);
+
+	}
 }

@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
             <?= $this->session->flashdata('message');?>
-          <div> <a href=" <?=base_url('welcome/t_kendaraan') ?> " class="btn btn-info" style="margin-bottom: 10px;"> Tambah </a>
+          <div> <a href=" <?=base_url('welcome/tambah_kendaraan') ?> " class="btn btn-info" style="margin-bottom: 10px;"> Tambah </a>
               
             <div>
               <div class="table-responsive">
