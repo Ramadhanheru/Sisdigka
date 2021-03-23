@@ -28,7 +28,7 @@
                        </div>
 
                         <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
-                          <a class="btn btn-sm btn-warning"  href="<?= base_url('').$q->id_kendaraan; ?>">Proses Diagnosa</a>
+                          <a class="btn btn-sm btn-warning"  href="<?= base_url('Mekanik/proses_diagnosa/').$q->id_kendaraan; ?>">Proses Diagnosa</a>
                         </div>
                          <?php }  ?>
                     </div>
