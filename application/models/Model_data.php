@@ -291,4 +291,22 @@ class Model_data extends CI_Model
 		return $query;
 	}
 
+	public function tampil_kerusakan(){
+
+		$query = $this->db->get('kerusakan');
+		return $query;
+
+	}
+
+	public function tampil_gejala_diagnosa($id_kerusakan){
+		$this->db->select('basis_pengetahuan.*,gejala.*,jenis_kerusakan.*,kerusakan.*');
+		$this->db->from('basis_pengetahuan');
+		$this->db->join('gejala','gejala.id_gejala = basis_pengetahuan.id_gejala');
+		$this->db->join('jenis_kerusakan','jenis_kerusakan.id_jenis_kerusakan = basis_pengetahuan.id_jenis_kerusakan');
+		$this->db->join('kerusakan','kerusakan.id_kerusakan = basis_pengetahuan.id_kerusakan');
+		$this->db->where('basis_pengetahuan.id_kerusakan',$id_kerusakan);
+		$query = $this->db->get();
+		return $query;
+	}
+
 }
