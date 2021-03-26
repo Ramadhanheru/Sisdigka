@@ -309,4 +309,78 @@ class Model_data extends CI_Model
 		return $query;
 	}
 
+	public function tambah_kerusakan($data){
+		$this->db->insert('kerusakan',$data);
+	}
+	public function edit_kerusakan($id){
+
+		$data = [
+				'kerusakan' => $this->input->post('kerusakan', true)
+					];
+		
+		$this->db->where('id_kerusakan', $id);
+		$this->db->update('kerusakan', $data);
+
+	}
+
+	public function hapus_kerusakan($id){
+		$this->db->where('id_kerusakan', $id);
+		$query = $this->db->delete('kerusakan');	
+	}
+
+
+
+
+	public function tampil_jenis_kerusakan(){
+		$query = $this->db->get('jenis_kerusakan');
+		return $query;
+	}
+
+	public function tambah_jenis_kerusakan($data){
+		$this->db->insert('jenis_kerusakan',$data);
+	}
+
+	public function edit_jenis_kerusakan($id){
+		$data = [
+				'kode_kerusakan' => $this->input->post('kode_kerusakan', true),
+				'jenis_kerusakan' => $this->input->post('jenis_kerusakan', true),
+				'solusi' => $this->input->post('solusi', true)
+					];
+		
+		$this->db->where('id_jenis_kerusakan', $id);
+		$this->db->update('jenis_kerusakan', $data);
+	}
+
+	public function hapus_jenis_kerusakan($id){
+	
+		$this->db->where('id_jenis_kerusakan', $id);
+		$query = $this->db->delete('jenis_kerusakan');		
+
+	}
+
+	public function tampil_gejala(){
+
+		$query = $this->db->get('gejala');
+		return $query;
+	}
+	public function tambah_gejala($data){
+		$this->db->insert('gejala',$data);
+	}
+	public function edit_gejala($id){
+
+		$data = [
+				'kode_gejala' => $this->input->post('kode_gejala', true),
+				'gejala' => $this->input->post('gejala', true)
+					];
+		
+		$this->db->where('id_gejala', $id);
+		$this->db->update('gejala', $data);
+
+	}
+
+	public function hapus_gejala($id){
+		$this->db->where('id_gejala', $id);
+		$query = $this->db->delete('gejala');	
+	}
+
 }

@@ -57,11 +57,33 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>kendaraan masuk</span></a>
       </li>
-
-       <hr class="sidebar-divider my-0">
-
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
+
+      <li <?= $this->uri->segment(2) == 'kerusakan' || 
+              $this->uri->segment(2) == 'jenis_kerusakan' ||
+              $this->uri->segment(2) == 'gejala' ||
+              $this->uri->segment(2) == 'basis_pengetahuan' ? 'class="nav-item active"' : '' ?> class="nav-item ">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Diagnosa Kendaraan</span>
+        </a>
+        <div <?= $this->uri->segment(2) == 'kerusakan' || 
+              $this->uri->segment(2) == 'jenis_kerusakan' ||
+              $this->uri->segment(2) == 'gejala' ||
+              $this->uri->segment(2) == 'basis_pengetahuan' ? 'class="collapse show"' : '' ?> id="collapsePages" class="collapse " aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Master Data:</h6>
+            <a <?= $this->uri->segment(2) == 'kerusakan' ? 'class="collapse-item active"' : '' ?> class="collapse-item" href="<?= base_url('welcome/kerusakan') ?>">kerusakan</a>
+            <a <?= $this->uri->segment(2) == 'jenis_kerusakan' ? 'class="collapse-item active"' : '' ?> class="collapse-item" href="<?= base_url('welcome/jenis_kerusakan') ?>">jenis kerusakan</a>
+            <a <?= $this->uri->segment(2) == 'gejala' ? 'class="collapse-item active"' : '' ?> class="collapse-item" href="<?= base_url('welcome/gejala') ?>">gejala</a>
+            <a <?= $this->uri->segment(2) == 'basis_pengetahuan' ? 'class="collapse-item active"' : '' ?> class="collapse-item" href="<?= base_url('welcome/basis_pengetahuan') ?>">basis pengetahuan</a>
+          </div>
+        </div>
+      </li>
+      
+
+
 
        <?php }else if($this->session->userdata('role') == 2){ ?>
          

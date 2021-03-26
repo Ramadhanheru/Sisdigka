@@ -265,4 +265,171 @@ class Welcome extends CI_Controller {
 			
 		}
 	}
+
+	public function kerusakan(){
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+		$data['query'] = $this->Model_data->tampil_kerusakan();
+		$this->load->view('template/sidebar');
+		$this->load->view('template/topbar',$data);
+		$this->load->view('kerusakan',$data);
+		$this->load->view('template/footer');
+	}
+	public function tambah_kerusakan(){
+		$this->form_validation->set_rules('kerusakan','kerusakan','required|trim');
+		if( $this->form_validation->run()==false){
+			$this->kerusakan();
+		}else{			
+			 $data = [
+			 	'kerusakan' => $this->input->post('kerusakan', true)
+            ];
+				$proses = $this->Model_data->tambah_kerusakan($data);
+				$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil ditambah ! 
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+				redirect('welcome/kerusakan');						
+		}
+	}
+	public function edit_kerusakan(){
+		$id = $this->input->post('id_kerusakan');
+		$this->form_validation->set_rules('kerusakan','kerusakan','required|trim');
+		if( $this->form_validation->run()==false){
+			$this->kerusakan();
+		}else{
+			$proses = $this->Model_data->edit_kerusakan($id);
+			$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil diubah ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect('welcome/kerusakan');
+		}
+	}
+	public function hapus_kerusakan(){
+		$id = $this->input->post('id_kerusakan');
+		$data = $this->Model_data->hapus_kerusakan($id);
+		if (!$data) {
+			$this->session->set_flashdata('message','<div class ="alert alert-success " roles="alert"> Data berhasil dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect(base_url('welcome/kerusakan'));
+		} else {
+			$this->session->set_flashdata('message','<div class ="alert alert-danger  " roles="alert"> Data gagal dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			$this->kerusakan();
+		}
+	}
+
+
+	public function jenis_kerusakan(){
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+		$data['query'] = $this->Model_data->tampil_jenis_kerusakan();
+		$this->load->view('template/sidebar');
+		$this->load->view('template/topbar',$data);
+		$this->load->view('jenis_kerusakan',$data);
+		$this->load->view('template/footer');
+	}
+	public function tambah_jenis_kerusakan(){
+		$this->form_validation->set_rules('kode_kerusakan','kode_kerusakan','required|trim');
+		$this->form_validation->set_rules('jenis_kerusakan','jenis_kerusakan','required|trim');
+		$this->form_validation->set_rules('solusi','solusi','required|trim');
+		if( $this->form_validation->run()==false){
+			$this->jenis_kerusakan();
+		}else{			
+			 $data = [
+			 	'kode_kerusakan' => $this->input->post('kode_kerusakan', true),
+			 	'jenis_kerusakan' => $this->input->post('jenis_kerusakan', true),
+			 	'solusi' => $this->input->post('solusi', true)
+            ];
+				$proses = $this->Model_data->tambah_jenis_kerusakan($data);
+				$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil ditambah ! 
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+				redirect('welcome/jenis_kerusakan');						
+		}
+	}
+	public function edit_jenis_kerusakan(){
+		$id = $this->input->post('id_jenis_kerusakan');
+		$this->form_validation->set_rules('kode_kerusakan','kode_kerusakan','required|trim');
+		$this->form_validation->set_rules('jenis_kerusakan','jenis_kerusakan','required|trim');
+		$this->form_validation->set_rules('solusi','solusi','required|trim');
+		if( $this->form_validation->run()==false){
+			$this->jenis_kerusakan();
+		}else{
+			$proses = $this->Model_data->edit_jenis_kerusakan($id);
+			$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil diubah ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect('welcome/jenis_kerusakan');
+		}
+	}
+	public function hapus_jenis_kerusakan(){
+		$id = $this->input->post('id_jenis_kerusakan');
+		$data = $this->Model_data->hapus_jenis_kerusakan($id);
+		if (!$data) {
+			$this->session->set_flashdata('message','<div class ="alert alert-success " roles="alert"> Data berhasil dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect(base_url('welcome/jenis_kerusakan'));
+		} else {
+			$this->session->set_flashdata('message','<div class ="alert alert-danger  " roles="alert"> Data gagal dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			$this->jenis_kerusakan();
+		}
+	}
+
+
+
+	public function gejala(){
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+		$data['query'] = $this->Model_data->tampil_gejala();
+		$this->load->view('template/sidebar');
+		$this->load->view('template/topbar',$data);
+		$this->load->view('gejala',$data);
+		$this->load->view('template/footer');
+	}
+	public function tambah_gejala(){
+		$this->form_validation->set_rules('kode_gejala','kode_gejala','required|trim');
+		$this->form_validation->set_rules('gejala','gejala','required|trim');
+		if( $this->form_validation->run()==false){
+			$this->gejala();
+		}else{			
+			 $data = [
+			 	'kode_gejala' => $this->input->post('kode_gejala', true),
+			 	'gejala' => $this->input->post('gejala', true)
+            ];
+				$proses = $this->Model_data->tambah_gejala($data);
+				$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil ditambah ! 
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+				redirect('welcome/gejala');						
+		}
+	}
+	public function edit_gejala(){
+		$id = $this->input->post('id_gejala');
+		$this->form_validation->set_rules('kode_gejala','kode_gejala','required|trim');
+		$this->form_validation->set_rules('gejala','gejala','required|trim');
+		if( $this->form_validation->run()==false){
+			$this->gejala();
+		}else{
+			$proses = $this->Model_data->edit_gejala($id);
+			$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil diubah ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect('welcome/gejala');
+		}
+	}
+	public function hapus_gejala(){
+		$id = $this->input->post('id_gejala');
+		$data = $this->Model_data->hapus_gejala($id);
+		if (!$data) {
+			$this->session->set_flashdata('message','<div class ="alert alert-success " roles="alert"> Data berhasil dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect(base_url('welcome/gejala'));
+		} else {
+			$this->session->set_flashdata('message','<div class ="alert alert-danger  " roles="alert"> Data gagal dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			$this->gejala();
+		}
+	}
+
+
+
+	public function basis_pengetahuan(){
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+		$data['query'] = $this->Model_data->tampil_basis_pengetahuan();
+		$this->load->view('template/sidebar');
+		$this->load->view('template/topbar',$data);
+		$this->load->view('basis_pengetahuan',$data);
+		$this->load->view('template/footer');
+	}
 }
