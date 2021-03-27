@@ -422,14 +422,61 @@ class Welcome extends CI_Controller {
 		}
 	}
 
-
-
 	public function basis_pengetahuan(){
 		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
 		$data['query'] = $this->Model_data->tampil_basis_pengetahuan();
+		$data['query2'] = $this->Model_data->tampil_kerusakan();
+		$data['query3'] = $this->Model_data->tampil_jenis_kerusakan();
+		$data['query4'] = $this->Model_data->tampil_gejala();
 		$this->load->view('template/sidebar');
 		$this->load->view('template/topbar',$data);
 		$this->load->view('basis_pengetahuan',$data);
 		$this->load->view('template/footer');
+	}
+
+	public function tambah_basis_pengetahuan(){
+		$this->form_validation->set_rules('id_kerusakan','id_kerusakan','required|trim');
+		$this->form_validation->set_rules('id_jenis_kerusakan','id_jenis_kerusakan','required|trim');
+		$this->form_validation->set_rules('id_gejala','id_gejala','required|trim');
+		if( $this->form_validation->run()==false){
+			$this->gejala();
+		}else{			
+			 $data = [
+			 	'id_kerusakan' => $this->input->post('id_kerusakan', true),
+			 	'id_jenis_kerusakan' => $this->input->post('id_jenis_kerusakan', true),
+			 	'id_gejala' => $this->input->post('id_gejala',true)
+            ];
+				$proses = $this->Model_data->tambah_basis_pengetahuan($data);
+				$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil ditambah ! 
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+				redirect('welcome/basis_pengetahuan');						
+		}
+	}
+	public function edit_basis_pengetahuan(){
+		$id = $this->input->post('id');
+		$this->form_validation->set_rules('id_kerusakan','id_kerusakan','required|trim');
+		$this->form_validation->set_rules('id_jenis_kerusakan','id_jenis_kerusakan','required|trim');
+		$this->form_validation->set_rules('id_gejala','id_gejala','required|trim');
+		if( $this->form_validation->run()==false){
+			$this->basis_pengetahuan();
+		}else{
+			$proses = $this->Model_data->edit_basis_pengetahuan($id);
+			$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil diubah ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect('welcome/basis_pengetahuan');
+		}
+	}
+	public function hapus_basis_pengetahuan(){
+		$id = $this->input->post('id');
+		$data = $this->Model_data->hapus_basis_pengetahuan($id);
+		if (!$data) {
+			$this->session->set_flashdata('message','<div class ="alert alert-success " roles="alert"> Data berhasil dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect(base_url('welcome/basis_pengetahuan'));
+		} else {
+			$this->session->set_flashdata('message','<div class ="alert alert-danger  " roles="alert"> Data gagal dihapus ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			$this->basis_pengetahuan();
+		}
 	}
 }

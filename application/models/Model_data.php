@@ -383,4 +383,38 @@ class Model_data extends CI_Model
 		$query = $this->db->delete('gejala');	
 	}
 
+
+
+
+
+	public function tampil_basis_pengetahuan(){
+		$this->db->select('basis_pengetahuan.*,kerusakan.*,jenis_kerusakan.*,gejala.*');
+		$this->db->from('basis_pengetahuan');
+		$this->db->join('kerusakan','kerusakan.id_kerusakan=basis_pengetahuan.id_kerusakan');
+		$this->db->join('jenis_kerusakan','jenis_kerusakan.id_jenis_kerusakan=basis_pengetahuan.id_jenis_kerusakan');
+		$this->db->join('gejala','gejala.id_gejala=basis_pengetahuan.id_gejala');
+		$query = $this->db->get();
+		return $query;
+	}
+	public function tambah_basis_pengetahuan($data){
+		$this->db->insert('basis_pengetahuan',$data);
+	}
+	public function edit_basis_pengetahuan($id){
+
+		$data = [
+				'id_kerusakan' => $this->input->post('id_kerusakan', true),
+				'id_jenis_kerusakan' => $this->input->post('id_jenis_kerusakan', true),
+				'id_gejala' => $this->input->post('id_gejala', true)
+					];
+		
+		$this->db->where('id', $id);
+		$this->db->update('basis_pengetahuan', $data);
+
+	}
+
+	public function hapus_basis_pengetahuan($id){
+		$this->db->where('id', $id);
+		$query = $this->db->delete('basis_pengetahuan');	
+	}
+
 }
