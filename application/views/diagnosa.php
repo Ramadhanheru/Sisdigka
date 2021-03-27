@@ -7,7 +7,9 @@
           </div>
 
           <div class="row">
-
+            <?php
+                $no=1;
+                foreach($query->result() as $q) { ?>
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-4 col-md-3 mb-4">
               <div class="card border-bottom-warning shadow h-100 py-2">
@@ -16,9 +18,7 @@
                     <div class="col mr-2">
                       <div class="text-md font-weight-bold text-primary text-uppercase mb-1">Kendaraan Masuk</div>
                       <div class="h5 mb-2 font-weight-bold text-gray-800">
-                         <?php
-                         $no=1;
-                         foreach($query->result() as $q) { ?>
+                        
                           <?= $q->tipe; ?>
 
                        </div>
@@ -30,7 +30,7 @@
                         <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
                           <a class="btn btn-sm btn-warning"  href="<?= base_url('Mekanik/proses_diagnosa/').$q->id_kendaraan; ?>">Proses Diagnosa</a>
                         </div>
-                         <?php }  ?>
+                        
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-motorcycle fa-5x text-gray-500"></i>
@@ -39,7 +39,7 @@
                 </div>
               </div>
             </div>
-
+                   <?php }  ?>
           </div>
 
 

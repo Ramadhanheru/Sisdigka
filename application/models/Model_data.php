@@ -287,6 +287,7 @@ class Model_data extends CI_Model
 		$this->db->from('kendaraan_masuk');
 		$this->db->join('user','user.id_user = kendaraan_masuk.id_user');
 		$this->db->where('kendaraan_masuk.id_user',$id);
+		$this->db->where('kendaraan_masuk.status','0');
 		$query = $this->db->get();
 		return $query;
 	}
@@ -415,6 +416,23 @@ class Model_data extends CI_Model
 	public function hapus_basis_pengetahuan($id){
 		$this->db->where('id', $id);
 		$query = $this->db->delete('basis_pengetahuan');	
+	}
+
+
+	public function get_jenis_kerusakan($id){
+
+		return $this->db->get_where('jenis_kerusakan',['id_jenis_kerusakan' => $id])->row_array();
+	}
+	public function get_gejala($id){
+
+		$this->db->select('basis_pengetahuan.*,kerusakan.*,jenis_kerusakan.*,gejala.*');
+		$this->db->from('basis_pengetahuan');
+		$this->db->join('kerusakan','kerusakan.id_kerusakan=basis_pengetahuan.id_kerusakan');
+		$this->db->join('jenis_kerusakan','jenis_kerusakan.id_jenis_kerusakan=basis_pengetahuan.id_jenis_kerusakan');
+		$this->db->join('gejala','gejala.id_gejala=basis_pengetahuan.id_gejala');
+		$this->db->where('basis_pengetahuan.id_jenis_kerusakan',$id);
+		$query = $this->db->get();
+		return $query;
 	}
 
 }

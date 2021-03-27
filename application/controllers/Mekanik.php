@@ -15,8 +15,12 @@ public function index()
 	}
 
 public function proses_diagnosa($id_kendaraan){
-	$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+
+		$this->session->set_userdata('id_kendaraan',$id_kendaraan);
+
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
 		$id = $this->session->userdata('id_user');
+
 		$data['query'] = $this->Model_data->ambil_id_kendaraan($id_kendaraan);
 		$data['kerusakan'] =$this->Model_data->tampil_kerusakan();
 		$this->load->view('template/sidebar');
@@ -61,6 +65,31 @@ public function Diagnosa(){
 		$this->load->view('template/topbar',$data);
 		$this->load->view('hasil_diagnosa',$data);
 		$this->load->view('template/footer');
+}
+
+	public function Hasil(){
+		$id = $this->uri->segment(3);
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+
+		$data['query'] = $this->Model_data->get_gejala($id);
+		$data['jenis_kerusakan'] = $this->Model_data->get_jenis_kerusakan($id);
+
+		$this->load->view('template/sidebar');
+		$this->load->view('template/topbar',$data);
+		$this->load->view('hasil',$data);
+		$this->load->view('template/footer');
+}
+
+public function selesai_diagnosa(){
+		$status = $this->session->userdata('id_kendaraan');
+		$this->db->set('status','2');
+		$this->db->where('id_kendaraan', $status);
+		$this->db->update('kendaraan_masuk');
+
+		$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil ditambah ! 
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+				redirect('Mekanik');
+
 }
 
 }

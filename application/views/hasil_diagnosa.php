@@ -42,7 +42,7 @@
                           <td><?= $q->kode_kerusakan; ?></td>
                           <td><?= $q->jenis_kerusakan ?></td>
                           <td>
-                            <a class="btn btn-sm btn-info" href="<?= base_url('').$q->id_jenis_kerusakan; ?>">Detail</a>
+                            <a class="btn btn-sm btn-info" href="<?= base_url('Mekanik/hasil/').$q->id_jenis_kerusakan; ?>">Detail</a>
                         </td> 
                           
                         
