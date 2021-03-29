@@ -75,7 +75,7 @@
                     
                     
                     <button id="send" type="submit" class="btn btn-primary">Submit</button>
-                    <a href=" <?=base_url('welcome/Kendaraan') ?> " class="btn btn-warning">Cancel</a>
+                    <a href=" <?=base_url('welcome/kendaraan_masuk') ?> " class="btn btn-warning">Cancel</a>
                 </form>
               </div>
             </div>
