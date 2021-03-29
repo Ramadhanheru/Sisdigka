@@ -73,9 +73,9 @@
                           <td><?= $q->tipe ?></td>
                           <td><?= $q->km ?></td>
                           <td><?php if ( $q->status != 0) { ?>
-                            <a class="btn btn-sm btn-info" href="<?= base_url('').$q->id_kendaraan; ?>">Selesai</a>
+                            <a class="btn btn-sm btn-info" href="#">Selesai</a>
                           <?php }else { ?>
-                            <a class="btn btn-sm btn-warning"  href="<?= base_url('').$q->id_kendaraan; ?>">Sedang Diagnosa</a>
+                            <a class="btn btn-sm btn-warning"  href="#">Sedang Diagnosa</a>
                          <?php } ?></td> 
                           <td><a href=" <?= base_url('welcome/edit_kendaraan/').$q->id_kendaraan; ?> " class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit"></i> </a> &nbsp; <a href=" <?= base_url('welcome/hapus_kendaraan/').$q->id_kendaraan; ?> " class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i> </a> </td>
                         

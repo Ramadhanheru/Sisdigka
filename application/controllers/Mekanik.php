@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mekanik extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+
+			if($this->session->userdata('role')!= '2')
+				redirect ('login');
+	}
+
 public function index()
 	{
 		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
@@ -91,5 +99,31 @@ public function selesai_diagnosa(){
 				redirect('Mekanik');
 
 }
+
+public function e_profile($id){
+		$data['user'] =  $this->db->get_where('user', ['user' => $this->session->userdata('user')])->row_array();
+		$data ['query']= $this->Model_data->ambil_id_user($id);
+
+		$this->form_validation->set_rules('user','user','required|trim');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]', ['min_length' => 'Kata sandi terlalu pendek!']);
+
+        if($this->form_validation->run()==false){
+		$this->load->view('template/sidebar');
+		$this->load->view('template/topbar' ,$data);
+		$this->load->view('e_profile',$data);
+		$this->load->view('template/footer');
+
+		}else{
+		
+		$this->db->set('user', $this->input->post('user'));
+		$this->db->set('password', password_hash($this->input->post('password'), PASSWORD_DEFAULT));
+		$this->db->where('id_user', $id);
+		$this->db->update('user');
+			$this->session->set_flashdata('message','<div class ="alert alert-success" roles="alert"> Data berhasil diubah ! 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button> </div>');
+			redirect('Mekanik');
+		}
+	}
+
 
 }

@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>SPK diagnosa thamrin group</title>
 
   <!-- Custom fonts for this template-->
   <link href="<?= base_url('assets/');?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,18 +44,20 @@
 
        <?php if($this->session->userdata('role') == 1){ ?>
          <!-- Nav Item - Dashboard -->
-      <li <?= $this->uri->segment(2) == '' ? 'class="nav-item active"' : '' ?> class="nav-item ">
-        <a class="nav-link" href="<?= base_url('welcome') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Mekanik</span></a>
+      
+        <li <?=  $this->uri->segment(2) == 'kendaraan_masuk' || $this->uri->segment(2) == 'edit_kendaraan' ? 'class="nav-item active"' : '' ?> class="nav-item ">
+        <a class="nav-link" href="<?= base_url('welcome/kendaraan_masuk') ?>">
+          <i class="fas fa-fw fa-motorcycle"></i>
+          <span>kendaraan masuk</span></a>
       </li>
 
        <hr class="sidebar-divider my-0">
 
-        <li <?= $this->uri->segment(2) == 'kendaraan_masuk' ? 'class="nav-item active"' : '' ?> class="nav-item ">
-        <a class="nav-link" href="<?= base_url('welcome/kendaraan_masuk') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>kendaraan masuk</span></a>
+
+      <li <?= $this->uri->segment(2) == '' || $this->uri->segment(2) == 'e_user' ? 'class="nav-item active"' : '' ?> class="nav-item ">
+        <a class="nav-link" href="<?= base_url('welcome') ?>">
+          <i class="fas fa-fw fa-address-card"></i>
+          <span>Mekanik</span></a>
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -65,7 +67,7 @@
               $this->uri->segment(2) == 'gejala' ||
               $this->uri->segment(2) == 'basis_pengetahuan' ? 'class="nav-item active"' : '' ?> class="nav-item ">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
+          <i class="fas fa-database"></i>
           <span>Diagnosa Kendaraan</span>
         </a>
         <div <?= $this->uri->segment(2) == 'kerusakan' || 
@@ -89,14 +91,9 @@
          
       <hr class="sidebar-divider my-0">
 
-      <li <?= $this->uri->segment(2) == 'dashboard' ? 'class="nav-item active"' : '' ?> class="nav-item ">
+         <li <?= $this->uri->segment(2) == '' || $this->uri->segment(2) == 'proses_diagnosa' || $this->uri->segment(2) == 'mulai_diagnosa' || $this->uri->segment(2) == 'Diagnosa' || $this->uri->segment(2) == 'hasil' ? 'class="nav-item active"' : '' ?> class="nav-item ">
         <a class="nav-link" href="<?= base_url('mekanik') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-         <li <?= $this->uri->segment(2) == '' ? 'class="nav-item active"' : '' ?> class="nav-item ">
-        <a class="nav-link" href="<?= base_url('mekanik') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-motorcycle"></i>
           <span>Diagnosa Kendaraan</span></a>
       </li>
 
@@ -121,7 +118,7 @@
         <!-- Nav Item - Dashboard -->
       <li  class="nav-item ">
         <a class="nav-link" href="<?= base_url('login/logout') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-sign-out-alt"></i>
           <span>Logout </span></a>
       </li>
 

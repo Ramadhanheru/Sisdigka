@@ -76,7 +76,7 @@
                               <input type="text" name="kode_kerusakan" class="form-control" id="kode_kerusakan" value="<?= $q->kode_kerusakan; ?>">
                             </div>
                             <div class="form-group">
-                              <label for="jenis_kerusakan">Kerusakan:</label>
+                              <label for="jenis_kerusakan">Jenis Kerusakan:</label>
                               <input type="text" name="jenis_kerusakan" class="form-control" id="jenis_kerusakan" value="<?= $q->jenis_kerusakan; ?>">
                             </div>
                             <div class="form-group">
@@ -156,7 +156,7 @@
             <input type="text" name="kode_kerusakan" class="form-control" id="kode_kerusakan" required="">
                             </div>
             <div class="form-group">
-            <label for="jenis_kerusakan">Kerusakan:</label>
+            <label for="jenis_kerusakan">Jenis Kerusakan:</label>
             <input type="text" name="jenis_kerusakan" class="form-control" id="jenis_kerusakan" required="">
                             </div>
             <div class="form-group">

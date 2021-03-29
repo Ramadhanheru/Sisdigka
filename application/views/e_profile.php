@@ -35,7 +35,11 @@
                     </div>
                     
                     <button id="send" type="submit" class="btn btn-primary">Submit</button>
+                    <?php if($user['role'] == '1'){ ?>
                     <a href=" <?=base_url('welcome') ?> " class="btn btn-warning">Cancel</a>
+                  <?php }else{ ?>
+                    <a href=" <?=base_url('mekanik') ?> " class="btn btn-warning">Cancel</a>
+                  <?php } ?>
                 </form>
               </div>
             </div>

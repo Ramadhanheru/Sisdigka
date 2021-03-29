@@ -13,7 +13,7 @@
           </button>
 
           <!-- Topbar Search -->
-              <h6 class="m-0 font-weight-bold text-primary" style="font-size: 25px;">Sistem Diagnosa Kendaraan </h6>
+              <h6 class="m-0 font-weight-bold text-primary" style="font-size: 25px;">Sistem Diagnosa Kendaraan Thamrin Group </h6>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -30,7 +30,11 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="<?= base_url('welcome/e_profile/').$user['id_user']; ?>">
+                <?php if($user['role'] == '1'){ ?>
+                <a class="dropdown-item" href="<?= base_url('Welcome/e_profile/').$user['id_user']; ?>">
+                <?php }else{ ?>
+                  <a class="dropdown-item" href="<?= base_url('Mekanik/e_profile/').$user['id_user']; ?>">
+                  <?php } ?>
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>

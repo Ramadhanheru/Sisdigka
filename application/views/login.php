@@ -16,7 +16,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="<?= base_url('assetss/'); ?>css/style.css">
 
-    <title>Login #3</title>
+    <title>SPK diagnosa thamrin group</title>
   </head>
   <body>
   
